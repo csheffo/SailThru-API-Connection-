@@ -67,8 +67,6 @@ def get_blast_open_rate_sailthru(newsletter):
         print ("Exception")
         print (e)
 
-#this is now setting the NL name as the first key in the dict
-
 def clean_up_json(newsletter, list_data, blast_data):
     try:
         print "Attempting to clean up JSON data..."
@@ -93,6 +91,7 @@ def aggregate_cleaned_json(newsletter, cleaned_json):
     open_rate = cleaned_json[newsletter]['open_rate']
     #this block is to try to correctly label the metrics going in to bime
     if newsletter == 'newsletter_axiosam':
+        #depending in specific behavior this may need to be .extend instead of .append
         aggregate_cleaned_json.append('Axios AM subscriber count': count , 'Axios AM open rate': open_rate)
     else if newsletter == 'newsletter_axiosprorata':
         aggregate_cleaned_json.append('Axios Pro Rata subscriber count': count , 'Axios Pro Rata open rate': open_rate)
